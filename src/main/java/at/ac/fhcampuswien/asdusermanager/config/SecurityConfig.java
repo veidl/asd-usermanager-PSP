@@ -52,10 +52,9 @@ public class SecurityConfig {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable()
                 .authorizeHttpRequests(auth ->
-                        auth.antMatchers("/**").permitAll()
-//                        auth.antMatchers("/auth/**", "/asd-usermanager/**").permitAll()
-                                /*.anyRequest().authenticated()*/)
-                .oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt)
+                        auth.antMatchers("/auth/**", "/swagger-ui/**", "/v3/api-docs/**").permitAll()
+                                .anyRequest().authenticated()
+                ).oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt)
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .logout(logout -> logout
                         .invalidateHttpSession(true)

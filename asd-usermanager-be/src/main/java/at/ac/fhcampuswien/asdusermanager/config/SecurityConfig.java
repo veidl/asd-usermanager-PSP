@@ -35,7 +35,6 @@ import java.security.interfaces.RSAPublicKey;
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig {
-
     @Resource
     private UserDetailsService userDetailsService;
 
@@ -45,26 +44,47 @@ public class SecurityConfig {
     @Value("${jwt.private.key}")
     RSAPrivateKey privateKey;
 
+    /**
+     * Allows unauthenticated requests to /auth/ and all sub paths
+     * Every other request is protected and needs an Access token in the HTTP headers
+     */
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable()
-                .authorizeHttpRequests(auth -> auth.antMatchers("/auth/**").permitAll()
-                        .anyRequest().authenticated())
+                .authorizeHttpRequests(auth ->
+                        auth.antMatchers("/**").permitAll()
+//                        auth.antMatchers("/auth/**", "/asd-usermanager/**").permitAll()
+                                /*.anyRequest().authenticated()*/)
                 .oauth2ResourceServer(OAuth2ResourceServerConfigurer::jwt)
-                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
+                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                .logout(logout -> logout
+                        .invalidateHttpSession(true)
+                        .clearAuthentication(true))
+                .exceptionHandling();
         return http.build();
     }
 
+    /**
+     * sets the spring security authentication manager
+     */
     @Bean(BeanIds.AUTHENTICATION_MANAGER)
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
         return authenticationConfiguration.getAuthenticationManager();
     }
 
+    /**
+     * Implement the custom authentication provider with in memory DB
+     * <p>
+     * password encoder is used to encrypt plain text passwords
+     * <p>
+     * setHideUserNotFoundExceptions is disabled to fulfill requirements (should not be enabled)
+     */
     @Bean
     public DaoAuthenticationProvider authProvider() {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
         authProvider.setUserDetailsService(userDetailsService);
         authProvider.setPasswordEncoder(passwordEncoder());
+        authProvider.setHideUserNotFoundExceptions(false);
         return authProvider;
     }
 

@@ -4,6 +4,7 @@ public record UserDTO(
         String firstName,
         String lastName,
         String userName,
-        String password
+        String password,
+        int failedAttempts
 ) {
 }

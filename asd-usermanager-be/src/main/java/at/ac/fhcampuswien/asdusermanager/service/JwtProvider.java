@@ -26,11 +26,14 @@ public class JwtProvider {
         return generateTokenWithUserName(principal.getUsername());
     }
 
+    /**
+     * generates new self signed JWT
+     */
     public String generateTokenWithUserName(String username) {
         JwtClaimsSet claims = JwtClaimsSet.builder()
                 .issuer("self")
                 .issuedAt(Instant.now())
-                .expiresAt(Instant.now().plusMillis(jwtExpirationInMillis))
+                .expiresAt(Instant.now().plusSeconds(jwtExpirationInMillis))
                 .subject(username)
                 .claim("scope", "ROLE_USER")
                 .build();

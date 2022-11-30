@@ -1,0 +1,19 @@
+# create a user
+POST http://localhost:8080/auth/signup
+Content-Type: application/json
+
+{
+  "userName": "dwight_rocks",
+  "firstName": "Dwight",
+  "lastName": "Shrute",
+  "password": "auto2413"
+}
+> {%
+client.test("Request failed with http 400", function() {
+client.assert(response.status === 400, "Response status is not 200");
+});
+
+client.test("Error message is thrown", function () {
+client.assert(response.body.message === "Username already exists");
+});
+%}

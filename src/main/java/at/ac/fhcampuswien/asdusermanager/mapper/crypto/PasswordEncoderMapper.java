@@ -14,7 +14,11 @@ public class PasswordEncoderMapper {
     final PasswordEncoder passwordEncoder;
 
     @EncodedMapping
-    public String encode(String value) {
+    public String encodePlainText(String value) {
         return passwordEncoder.encode(value);
+    }
+
+    public boolean doesPasswordMatch(String newPassword, String oldPassword) {
+        return passwordEncoder.matches(newPassword, oldPassword);
     }
 }

@@ -11,7 +11,7 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "USERS")
+@Table(name = "TBL_USERS")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -35,4 +35,20 @@ public class UserEntity {
     String password;
     @Column(name = "TST_CREATED")
     LocalDateTime created;
+    @Column(name = "INT_FAILED_ATTEMPTS")
+    int failedAttempts;
+    @Column(name = "DATE_LOCKED_UNTIL")
+    LocalDateTime lockedUntil;
+
+    public void increaseFailedAttempt() {
+        this.failedAttempts += 1;
+        if (this.lockedUntil == null && this.failedAttempts > 2) {
+            this.lockedUntil = LocalDateTime.now().plusSeconds(60);
+        }
+    }
+
+    public void resetFailedAttempts() {
+        this.failedAttempts = 0;
+        this.lockedUntil = null;
+    }
 }

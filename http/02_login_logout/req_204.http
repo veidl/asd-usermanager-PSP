@@ -1,0 +1,49 @@
+# create a user
+POST http://localhost:8080/auth/signup
+Content-Type: application/json
+
+{
+  "userName": "dwight_rocks",
+  "firstName": "Dwight",
+  "lastName": "Shrute",
+  "password": "auto2413"
+}
+
+###
+
+POST http://localhost:8080/auth/login
+Content-Type: application/json
+
+{
+  "userName": "dwight_rocks",
+  "password": "auto2413"
+}
+
+> {%
+client.test("Request executed successfully", function() {
+client.assert(response.status === 200, "Response status is not 200");
+});
+
+    client.global.set("refresh_token", response.body.refreshToken)
+    client.global.set("auth_token", response.body.authToken);
+%}
+
+###
+POST http://localhost:8080/password
+
+> {%
+client.test("not authorized", function() {
+client.assert(response.status === 401, "Unauthorized");
+});
+%}
+
+###
+POST http://localhost:8080/logout/{{refresh_token}}
+Content-Type: application/json
+Authorization: Bearer {{auth_token}}
+
+> {%
+client.test("authorized", function() {
+client.assert(response.status === 200, "OK");
+});
+%}

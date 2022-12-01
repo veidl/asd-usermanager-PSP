@@ -5,6 +5,7 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 import {Router} from '@angular/router';
 import {interval, Observable, Subscription, timer} from "rxjs";
 import {takeUntil, takeWhile, tap} from "rxjs/operators";
+import {FormControl, FormGroup, Validators} from "@angular/forms";
 
 @Component({
     selector: 'app-login',
@@ -14,8 +15,11 @@ import {takeUntil, takeWhile, tap} from "rxjs/operators";
 export class LoginComponent implements OnInit {
 
     snackbarDurationInSeconds = 5;
-    userName: string;
-    password: string;
+
+    loginForm = new FormGroup({
+        userName: new FormControl('', [Validators.required]),
+        password: new FormControl('', [Validators.required])
+    });
 
     constructor(private authService: AuthService, private tokenService: TokenService,
                 private matSnackbar: MatSnackBar, private router: Router) {
@@ -25,7 +29,10 @@ export class LoginComponent implements OnInit {
     }
 
     handleLogin() {
-        this.authService.loginCall({userName: this.userName, password: this.password})
+        this.authService.loginCall({
+            userName: this.loginForm.get('userName').value,
+            password: this.loginForm.get('password').value
+        })
             .subscribe(response => {
                     this.tokenService.saveToken(response);
                     this.router.navigate(['detail']);

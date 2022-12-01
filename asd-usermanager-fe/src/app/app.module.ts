@@ -10,11 +10,12 @@ import {MatGridListModule} from '@angular/material/grid-list';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {DetailPageComponent} from './detail-page/detail-page.component';
 import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatAutocompleteModule} from "@angular/material/autocomplete";
 
 @NgModule({
     declarations: [
@@ -34,7 +35,9 @@ import {MatTooltipModule} from '@angular/material/tooltip';
         MatSnackBarModule,
         FormsModule,
         HttpClientModule,
-        MatTooltipModule
+        MatTooltipModule,
+        MatAutocompleteModule,
+        ReactiveFormsModule
     ],
     providers: [],
     bootstrap: [AppComponent]

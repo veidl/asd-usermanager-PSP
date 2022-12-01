@@ -1,13 +1,19 @@
 ![Build Status](https://github.com/veidl/asd-usermanager-PSP/actions/workflows/gradle.yml/badge.svg)
 
-# User Manager
+# User Manager Backend
 
-Simple Backend application to manage users and Frontend to handle User Management in a simple way.
+Simple Backend application to manage users.
 
 ## How to run
 
-### Backend: [See Instructions](./asd-usermanager-be/README.md)
-### Frontend: [See Instructions](./asd-usermanager-fe/README.md)
+1. ``gradle build``
+2. ``gradle bootRun``
+
+## Endpoint Definitions
+
+All endpoints can be found here:
+
+[Swagger Endpoint Documentation](http://localhost:8080/swagger-ui/index.html#/)
 
 ### Contributors
 

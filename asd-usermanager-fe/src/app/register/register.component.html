@@ -9,25 +9,71 @@
     <div class="row">
         <div class="col-4">&nbsp;</div>
         <div class="col-4">
-            <form>
+            <form [formGroup]="registerForm" (submit)="handleRegister()">
                 <mat-form-field appearance="outline" class="form-width">
                     <mat-label>Username</mat-label>
-                    <input matInput placeholder="Enter Username" autocomplete="username">
+                    <input matInput placeholder="Enter Username" autocomplete="username"
+                           formControlName="userName">
+                    <mat-error *ngIf="registerForm.get('userName').hasError('required')">
+                        Please enter a username!
+                    </mat-error>
+                    <mat-error *ngIf="registerForm.get('userName').hasError('minlength')">
+                        Please provide a username with minimum length
+                        of {{registerForm.get('userName').errors.minlength.requiredLength}}
+                    </mat-error>
+                    <mat-error *ngIf="registerForm.get('userName').hasError('maxlength')">
+                        Please provide a username with maximum length
+                        of {{registerForm.get('userName').errors.maxlength.requiredLength}}
+                    </mat-error>
                 </mat-form-field>
                 <mat-form-field appearance="outline" class="form-width">
                     <mat-label>First Name</mat-label>
-                    <input matInput placeholder="Enter First Name">
+                    <input matInput placeholder="Enter First Name" formControlName="firstName">
+                    <mat-error *ngIf="registerForm.get('firstName').hasError('required')">
+                        Please enter a first name!
+                    </mat-error>
+                    <mat-error *ngIf="registerForm.get('firstName').hasError('minlength')">
+                        Please provide a first name with minimum length
+                        of {{registerForm.get('firstName').errors.minlength.requiredLength}}
+                    </mat-error>
+                    <mat-error *ngIf="registerForm.get('firstName').hasError('maxlength')">
+                        Please provide a first name with maximum length
+                        of {{registerForm.get('firstName').errors.maxlength.requiredLength}}
+                    </mat-error>
                 </mat-form-field>
                 <mat-form-field appearance="outline" class="form-width">
                     <mat-label>Last Name</mat-label>
-                    <input matInput placeholder="Enter Last Name">
+                    <input matInput placeholder="Enter Last Name" formControlName="lastName">
+                    <mat-error *ngIf="registerForm.get('lastName').hasError('required')">
+                        Please enter a last name!
+                    </mat-error>
+                    <mat-error *ngIf="registerForm.get('lastName').hasError('minlength')">
+                        Please provide a last name with minimum length
+                        of {{registerForm.get('lastName').errors.minlength.requiredLength}}
+                    </mat-error>
+                    <mat-error *ngIf="registerForm.get('lastName').hasError('maxlength')">
+                        Please provide a last name with maximum length
+                        of {{registerForm.get('lastName').errors.maxlength.requiredLength}}
+                    </mat-error>
                 </mat-form-field>
                 <mat-form-field appearance="outline" class="form-width">
                     <mat-label>Password</mat-label>
-                    <input matInput placeholder="Enter Password" type="password" autocomplete="current-password">
+                    <input matInput placeholder="Enter Password" type="password"
+                           autocomplete="current-password" formControlName="password">
+                    <mat-error *ngIf="registerForm.get('password').hasError('required')">
+                        Please enter a password!
+                    </mat-error>
+                    <mat-error *ngIf="registerForm.get('password').hasError('minlength')">
+                        Please provide a password with minimum length
+                        of {{registerForm.get('password').errors.minlength.requiredLength}}
+                    </mat-error>
+                    <mat-error *ngIf="registerForm.get('password').hasError('maxlength')">
+                        Please provide a password with maximum length
+                        of {{registerForm.get('password').errors.maxlength.requiredLength}}
+                    </mat-error>
                 </mat-form-field>
                 <button mat-raised-button color="primary"
-                        class="form-width" type="submit">
+                        class="form-width" type="submit" [disabled]="registerForm.invalid">
                     Register
                 </button>
             </form>

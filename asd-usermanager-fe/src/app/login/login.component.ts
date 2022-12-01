@@ -29,6 +29,8 @@ export class LoginComponent implements OnInit {
     }
 
     handleLogin() {
+        if (this.loginForm.invalid)
+            return;
         this.authService.loginCall({
             userName: this.loginForm.get('userName').value,
             password: this.loginForm.get('password').value

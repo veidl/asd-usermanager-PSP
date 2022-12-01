@@ -1,1 +1,67 @@
-<p>register works!</p>
+<div class="container container-margin">
+    <div class="row">
+        <div class="col-4">&nbsp;</div>
+        <div class="col-4">
+            <mat-form-field appearance="outline" class="form-width">
+                <mat-label>Username</mat-label>
+                <input matInput placeholder="Enter Username"
+                       [(ngModel)]="userName" (keydown.enter)="handleRegister()"
+                >
+            </mat-form-field>
+        </div>
+        <div class="col-4">&nbsp;</div>
+    </div>
+    <div class="row">
+        <div class="col-4">&nbsp;</div>
+        <div class="col-4">
+            <mat-form-field appearance="outline" class="form-width">
+                <mat-label>First Name</mat-label>
+                <input matInput placeholder="Enter First Name"
+                       [(ngModel)]="firstName" (keydown.enter)="handleRegister()"
+                >
+            </mat-form-field>
+        </div>
+        <div class="col-4">&nbsp;</div>
+    </div>
+    <div class="row">
+        <div class="col-4">&nbsp;</div>
+        <div class="col-4">
+            <mat-form-field appearance="outline" class="form-width">
+                <mat-label>Last Name</mat-label>
+                <input matInput placeholder="Enter Last Name"
+                       [(ngModel)]="lastName" (keydown.enter)="handleRegister()"
+                >
+            </mat-form-field>
+        </div>
+        <div class="col-4">&nbsp;</div>
+    </div>
+    <div class="row">
+        <div class="col-4">&nbsp;</div>
+        <div class="col-4">
+            <mat-form-field appearance="outline" class="form-width">
+                <mat-label>Password</mat-label>
+                <input matInput placeholder="Enter Password"
+                       [(ngModel)]="password" (keydown.enter)="handleRegister()"
+                       type="password">
+            </mat-form-field>
+        </div>
+        <div class="col-4">&nbsp;</div>
+    </div>
+    <div class="row">
+        <div class="col-4">&nbsp;</div>
+        <div class="col-4">
+            <button mat-raised-button color="primary"
+                    class="form-width" (click)="handleRegister()">
+                Register
+            </button>
+        </div>
+        <div class="col-4">&nbsp;</div>
+    </div>
+    <div class="row">
+        <div class="col-4">&nbsp;</div>
+        <div class="col-4 d-flex justify-content-center">
+            <a mat-button (click)="handleLoginRoute()">Go back to Login!</a>
+        </div>
+        <div class="col-4">&nbsp;</div>
+    </div>
+</div>

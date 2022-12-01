@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {TokenService} from '../core/service/token.service';
-import {AuthenticationDto} from '../login/model/authentication-dto';
+import {AuthenticationDto} from '../core/model/authentication-dto';
 import {AuthService} from '../core/service/auth.service';
 import {Router} from '@angular/router';
 import {MatSnackBar} from '@angular/material/snack-bar';
@@ -35,7 +35,7 @@ export class DetailPageComponent implements OnInit {
             return;
         }
         this.authService.logoutCall(this.tokenDetails.refreshToken)
-            .subscribe((response) => {
+            .subscribe(() => {
                 this.tokenService.removeToken();
                 this.router.navigate(['login']);
             }, (error) => {

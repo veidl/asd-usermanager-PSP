@@ -1,25 +1,25 @@
 import {Injectable} from '@angular/core';
-import {AuthenticationDto} from '../../login/model/authentication-dto';
+import {AuthenticationDto} from '../model/authentication-dto';
 
 @Injectable({
-  providedIn: 'root'
+    providedIn: 'root'
 })
 export class TokenService {
 
-  key = 'token';
+    key = 'token';
 
-  constructor() {
-  }
+    constructor() {
+    }
 
-  saveToken(authenticationDto: AuthenticationDto) {
-    localStorage.setItem(this.key, JSON.stringify(authenticationDto));
-  }
+    saveToken(authenticationDto: AuthenticationDto) {
+        localStorage.setItem(this.key, JSON.stringify(authenticationDto));
+    }
 
-  removeToken() {
-    localStorage.removeItem(this.key);
-  }
+    removeToken() {
+        localStorage.removeItem(this.key);
+    }
 
-  getToken(): AuthenticationDto {
-    return JSON.parse(localStorage.getItem(this.key));
-  }
+    getToken(): AuthenticationDto {
+        return JSON.parse(localStorage.getItem(this.key));
+    }
 }

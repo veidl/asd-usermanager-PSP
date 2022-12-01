@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-4">&nbsp;</div>
         <div class="col-4">
-            <mat-form-field appearance="outline" floatLabel="always" class="form-width">
+            <mat-form-field appearance="outline" class="form-width">
                 <mat-label>Username</mat-label>
                 <input matInput placeholder="Enter Username"
                        [(ngModel)]="userName" (keydown.enter)="handleLogin()"
@@ -14,7 +14,7 @@
     <div class="row">
         <div class="col-4">&nbsp;</div>
         <div class="col-4">
-            <mat-form-field appearance="outline" floatLabel="always" class="form-width">
+            <mat-form-field appearance="outline" class="form-width">
                 <mat-label>Password</mat-label>
                 <input matInput placeholder="Enter Password"
                        [(ngModel)]="password" (keydown.enter)="handleLogin()"
@@ -30,6 +30,13 @@
                     class="form-width" (click)="handleLogin()">
                 Login
             </button>
+        </div>
+        <div class="col-4">&nbsp;</div>
+    </div>
+    <div class="row">
+        <div class="col-4">&nbsp;</div>
+        <div class="col-4 d-flex justify-content-center">
+            <a mat-button (click)="handleRegisterRoute()">No Account? Register now!</a>
         </div>
         <div class="col-4">&nbsp;</div>
     </div>

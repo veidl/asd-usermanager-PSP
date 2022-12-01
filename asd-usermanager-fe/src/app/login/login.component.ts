@@ -38,4 +38,8 @@ export class LoginComponent implements OnInit {
                     }
                 });
     }
+
+    handleRegisterRoute() {
+        this.router.navigate(['register']);
+    }
 }

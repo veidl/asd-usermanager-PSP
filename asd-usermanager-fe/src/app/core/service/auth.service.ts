@@ -25,4 +25,8 @@ export class AuthService {
     registerCall(registerDto: RegisterDto): Observable<void> {
         return this.http.post<void>(this.url + `auth/signup`, registerDto);
     }
+
+    checkBackendHealth(): Observable<void> {
+      return this.http.get<void>(this.url + 'actuator/health');
+    }
 }

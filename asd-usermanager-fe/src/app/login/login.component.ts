@@ -1,8 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {AuthService} from '../core/service/auth.service';
 import {TokenService} from '../core/service/token.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {Router} from '@angular/router';
+import {interval, Observable, Subscription, timer} from "rxjs";
+import {takeUntil, takeWhile, tap} from "rxjs/operators";
 
 @Component({
     selector: 'app-login',
@@ -15,9 +17,7 @@ export class LoginComponent implements OnInit {
     userName: string;
     password: string;
 
-    errorMsg = '';
-
-    constructor(private loginService: AuthService, private tokenService: TokenService,
+    constructor(private authService: AuthService, private tokenService: TokenService,
                 private matSnackbar: MatSnackBar, private router: Router) {
     }
 
@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
     }
 
     handleLogin() {
-        this.loginService.loginCall({userName: this.userName, password: this.password})
+        this.authService.loginCall({userName: this.userName, password: this.password})
             .subscribe(response => {
                     this.tokenService.saveToken(response);
                     this.router.navigate(['detail']);

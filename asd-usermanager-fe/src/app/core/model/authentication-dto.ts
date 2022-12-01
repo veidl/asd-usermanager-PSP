@@ -1,6 +1,6 @@
 export interface AuthenticationDto {
     authToken: string;
     refreshToken: string;
-    expiresAt: Date;
+    expiresAt: string;
     userName: string;
 }

@@ -21,3 +21,10 @@ jwt:
 server:
   error:
     include-message: always
+
+management:
+  endpoints:
+    web:
+      cors:
+        allowed-origins: http://localhost:4200
+        allowed-methods: GET

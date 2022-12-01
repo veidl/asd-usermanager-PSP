@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {LoginDto} from '../model/login-dto';
 import {Observable} from 'rxjs';
 import {AuthenticationDto} from '../model/authentication-dto';
@@ -15,7 +15,11 @@ export class AuthService {
     }
 
     loginCall(loginDto: LoginDto): Observable<AuthenticationDto> {
-        return this.http.post<AuthenticationDto>(this.url + 'auth/login', loginDto);
+        return this.http.post<AuthenticationDto>(this.url + 'auth/login', loginDto, {
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        });
     }
 
     logoutCall(refreshToken: string): Observable<void> {

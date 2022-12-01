@@ -3,7 +3,7 @@ POST http://localhost:8080/auth/signup
 Content-Type: application/json
 
 {
-  "userName": "dwight_rocks",
+  "userName": "dwight_rocksaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
   "firstName": "Dwight",
   "lastName": "Shrute",
   "password": "auto2413"

@@ -3,11 +3,11 @@ package at.ac.fhcampuswien.asdusermanager.dto;
 import javax.validation.constraints.NotEmpty;
 
 public record ChangePasswordDTO(
-        @NotEmpty
+        @NotEmpty(message = "{inputNotEmpty}")
         String currentPassword,
-        @NotEmpty
+        @NotEmpty(message = "{inputNotEmpty}")
         String newPassword,
-        @NotEmpty
+        @NotEmpty(message = "{inputNotEmpty}")
         String verifiedPassword
 ) {
 }

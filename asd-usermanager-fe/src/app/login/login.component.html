@@ -1,0 +1,46 @@
+<div class="container container-margin">
+    <div class="row">
+        <div class="col-4">&nbsp;</div>
+        <div class="col-4 d-flex justify-content-center">
+            <h3>ASD-Usermanager Login</h3>
+        </div>
+        <div class="col-4">&nbsp;</div>
+    </div>
+    <div class="row">
+        <div class="col-4">&nbsp;</div>
+        <div class="col-4 d-flex justify-content-center">
+            <form (submit)="handleLogin()" [formGroup]="loginForm">
+                <mat-form-field appearance="outline" class="form-width">
+                    <mat-label>Username</mat-label>
+                    <input matInput placeholder="Enter Username"
+                           autocomplete="username" formControlName="userName"
+                    >
+                    <mat-error *ngIf="loginForm.get('userName').hasError('required')">
+                        Please enter a username!
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="form-width">
+                    <mat-label>Password</mat-label>
+                    <input matInput placeholder="Enter Password"
+                           type="password" autocomplete="current-password" formControlName="password">
+                    <mat-error *ngIf="loginForm.get('password').hasError('required')">
+                        Please enter a password!
+                    </mat-error>
+                </mat-form-field>
+                <button mat-raised-button color="primary"
+                        class="form-width" type="submit">
+                    Login
+                </button>
+            </form>
+        </div>
+        <div class="col-4">&nbsp;</div>
+    </div>
+    <div class="row mt-2">
+        <div class="col-4">&nbsp;</div>
+        <div class="col-4 d-flex justify-content-center">
+            <a mat-button (click)="handleRegisterRoute()">No Account? Register now!</a>
+        </div>
+        <div class="col-4">&nbsp;</div>
+    </div>
+</div>
+

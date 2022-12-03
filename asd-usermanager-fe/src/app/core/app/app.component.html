@@ -1,0 +1,13 @@
+<div class="row mt-3" *ngIf="!backendAvailable">
+  <div class="col-4">&nbsp;</div>
+  <div class="col-4">
+    <div class="alert alert-danger d-flex align-items-center" role="alert">
+      <div>
+        Backend not running! Please read README.md to start it.
+      </div>
+    </div>
+  </div>
+  <div class="col-4">&nbsp;</div>
+</div>
+
+<router-outlet></router-outlet>

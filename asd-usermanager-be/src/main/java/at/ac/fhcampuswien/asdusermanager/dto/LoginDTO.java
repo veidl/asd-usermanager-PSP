@@ -3,9 +3,9 @@ package at.ac.fhcampuswien.asdusermanager.dto;
 import javax.validation.constraints.NotEmpty;
 
 public record LoginDTO(
-        @NotEmpty
+        @NotEmpty(message = "{inputNotEmpty}")
         String userName,
-        @NotEmpty
+        @NotEmpty(message = "{inputNotEmpty}")
         String password
 ) {
 }

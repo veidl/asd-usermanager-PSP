@@ -15,6 +15,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 export class LoginComponent implements OnInit {
 
     snackbarDurationInSeconds = 5;
+    errorMessage = "";
 
     loginForm = new FormGroup({
         userName: new FormControl('', [Validators.required]),
@@ -41,6 +42,7 @@ export class LoginComponent implements OnInit {
                 },
                 error => {
                     if (error.status === 400 && error.error) {
+                        this.errorMessage = error.error.message;
                         this.matSnackbar.open(
                             error.error.message ? error.error.message : 'Could not login!',
                             'OK', {duration: this.snackbarDurationInSeconds * 1000});

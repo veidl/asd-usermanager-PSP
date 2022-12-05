@@ -15,6 +15,10 @@ export class DetailPageComponent implements OnInit {
     snackbarDurationInSeconds = 5;
     tokenDetails: AuthenticationDto;
 
+    oldPw: string;
+    newPw: string;
+    newPwWdh: string;
+
     constructor(private tokenService: TokenService, private authService: AuthService,
                 private router: Router, private matSnackbar: MatSnackBar) {
         this.getTokenDetails();
@@ -43,6 +47,19 @@ export class DetailPageComponent implements OnInit {
                     error.error.message ? error.error.message : 'Could not perform logout!',
                     'OK', {duration: this.snackbarDurationInSeconds * 1000});
             });
+    }
+
+    submitNewPassword() {
+        this.authService.changePassword(this.oldPw, this.newPw, this.newPwWdh)
+            .subscribe(() => {
+                this.matSnackbar.open(
+                    'Password changed!',
+                    'OK', {duration: this.snackbarDurationInSeconds * 1000});
+            }, (error) => {
+                this.matSnackbar.open(
+                    error.error.message ? error.error.message : 'Could not change password!',
+                    'OK', {duration: this.snackbarDurationInSeconds * 1000});
+            })
     }
 
 }

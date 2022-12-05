@@ -9,6 +9,18 @@
     <div class="row">
         <div class="col-4">&nbsp;</div>
         <div class="col-4 d-flex justify-content-center">
+            <div class="alert alert-danger d-flex align-items-center" role="alert"
+                 *ngIf="errorMessage && errorMessage.includes('locked')">
+                <div>
+                    {{errorMessage}}
+                </div>
+            </div>
+        </div>
+        <div class="col-4">&nbsp;</div>
+    </div>
+    <div class="row">
+        <div class="col-4">&nbsp;</div>
+        <div class="col-4 d-flex justify-content-center">
             <form (submit)="handleLogin()" [formGroup]="loginForm">
                 <mat-form-field appearance="outline" class="form-width">
                     <mat-label>Username</mat-label>

@@ -41,9 +41,13 @@ export class RegisterComponent implements OnInit {
         })
             .subscribe(() => {
                 this.handleLoginRoute();
-            }, () => {
+            }, (error) => {
+                let errorMessage = 'Could not perform register!';
+                if (error.status === 400 && error.error) {
+                    errorMessage = error.error.message;
+                }
                 this.matSnackbar.open(
-                    'Could not perform register!',
+                    errorMessage,
                     'OK', {duration: this.snackbarDurationInSeconds * 1000});
 
             })

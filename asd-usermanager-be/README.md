@@ -6,6 +6,8 @@ Simple Backend application to manage users.
 
 ## How to run
 
+Run those commands in the "asd-usermanager-be" directory:
+
 1. ``gradle build``
 2. ``gradle bootRun``
 

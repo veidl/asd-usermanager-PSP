@@ -6,8 +6,8 @@ Simple Backend application to manage users and Frontend to handle User Managemen
 
 ## How to run
 
-### Backend: [See Instructions](./asd-usermanager-be/README.md)
-### Frontend: [See Instructions](./asd-usermanager-fe/README.md)
+### Backend: [See Instructions](./asd-usermanager-be/README.md) (Run the commands on asd-usermanager-be)
+### Frontend: [See Instructions](./asd-usermanager-fe/README.md) (Run the commands on asd-usermanager-fe)
 
 ### Contributors
 

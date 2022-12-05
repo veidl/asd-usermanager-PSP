@@ -8,6 +8,9 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## How to run
 
+Run those commands in the "asd-usermanager-fe" directory:
+
+
 1. ``npm install``
 2. ``npm run start``
 

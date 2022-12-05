@@ -1,4 +1,4 @@
-name: Build only
+name: Build and Test
 on: [push, pull_request]
 jobs:
   build:
@@ -15,4 +15,6 @@ jobs:
           distribution: 'adopt'
           cache: gradle
       - name: Build
-        run: gradle build
+        run: gradle build -x test
+      - name: Test
+        run: gradle test

@@ -13,6 +13,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -30,10 +32,12 @@ class UserControllerTest {
 
     @Autowired
     UserRepository userRepository;
+    @Autowired
+    PasswordEncoder passwordEncoder;
 
 
     @BeforeAll
-    public static void setUp(){
+    public static void setUp() {
 
     }
 
@@ -94,24 +98,50 @@ class UserControllerTest {
 
     }
 
-/*    @Test
+    @Test
+    @WithMockUser(username = "dwight")
     void password_change_mismatch() throws Exception {
         // Arrange
         ChangePasswordDTO changePasswordDTO = new ChangePasswordDTO("auto2413", "auto1234", "auto12345");
-        String dummyToken = "MY_AWESOME_TOKEN";
+        this.userRepository.save(getUserEntity());
 
 
-        String error = mockMvc.perform(MockMvcRequestBuilders
+        // Act & Assert
+        mockMvc.perform(MockMvcRequestBuilders
                         .post("/password")
-                        .header("Authorization", "Bearer "+ dummyToken)
                         .accept(MediaType.APPLICATION_JSON)
                         .content(new ObjectMapper().writeValueAsString(changePasswordDTO))
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isBadRequest())
                 .andReturn().getResolvedException().getMessage();
+    }
 
+//    @Test
+//    @WithUserDetails()
+//    void password_changes() throws Exception {
+//        // Arrange
+//        ChangePasswordDTO changePasswordDTO = new ChangePasswordDTO("auto2413", "auto1234", "auto1234");
+//        this.userRepository.save(getUserEntity());
+//
+//
+//        // Act & Assert
+//        mockMvc.perform(MockMvcRequestBuilders
+//                        .post("/password")
+//                        .accept(MediaType.APPLICATION_JSON)
+//                        .content(new ObjectMapper().writeValueAsString(changePasswordDTO))
+//                        .contentType(MediaType.APPLICATION_JSON))
+//                .andExpect(status().isOk());
+//    }
 
+    private UserEntity getUserEntity() {
+        UserEntity userEntity = new UserEntity();
+        userEntity.setUserName("dwight");
+        userEntity.setPassword(passwordEncoder.encode("auto2413"));
+        userEntity.setFirstName("Dwight");
+        userEntity.setLastName("Schrute");
 
-    }*/
+        return userEntity;
+
+    }
 
 }

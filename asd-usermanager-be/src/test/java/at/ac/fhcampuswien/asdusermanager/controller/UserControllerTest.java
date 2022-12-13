@@ -3,6 +3,7 @@ package at.ac.fhcampuswien.asdusermanager.controller;
 import at.ac.fhcampuswien.asdusermanager.dto.ChangePasswordDTO;
 import at.ac.fhcampuswien.asdusermanager.dto.RegisterDTO;
 import at.ac.fhcampuswien.asdusermanager.entity.UserEntity;
+import at.ac.fhcampuswien.asdusermanager.mapper.UserMapper;
 import at.ac.fhcampuswien.asdusermanager.repository.UserRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Assertions;
@@ -34,6 +35,8 @@ class UserControllerTest {
     UserRepository userRepository;
     @Autowired
     PasswordEncoder passwordEncoder;
+    @Autowired
+    UserMapper userMapper;
 
 
     @BeforeAll
@@ -116,32 +119,9 @@ class UserControllerTest {
                 .andReturn().getResolvedException().getMessage();
     }
 
-//    @Test
-//    @WithUserDetails()
-//    void password_changes() throws Exception {
-//        // Arrange
-//        ChangePasswordDTO changePasswordDTO = new ChangePasswordDTO("auto2413", "auto1234", "auto1234");
-//        this.userRepository.save(getUserEntity());
-//
-//
-//        // Act & Assert
-//        mockMvc.perform(MockMvcRequestBuilders
-//                        .post("/password")
-//                        .accept(MediaType.APPLICATION_JSON)
-//                        .content(new ObjectMapper().writeValueAsString(changePasswordDTO))
-//                        .contentType(MediaType.APPLICATION_JSON))
-//                .andExpect(status().isOk());
-//    }
-
     private UserEntity getUserEntity() {
-        UserEntity userEntity = new UserEntity();
-        userEntity.setUserName("dwight");
-        userEntity.setPassword(passwordEncoder.encode("auto2413"));
-        userEntity.setFirstName("Dwight");
-        userEntity.setLastName("Schrute");
-
-        return userEntity;
-
+        RegisterDTO dto = new RegisterDTO("dwighto", "Dwightoo", "Schruteu", "auto2413");
+        return userMapper.toEntity(dto);
     }
 
 }
